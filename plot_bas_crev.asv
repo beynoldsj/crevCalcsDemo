@@ -1,0 +1,24 @@
+
+
+% First import csv as column vectors
+
+figure(1);clf
+
+hold on
+plot(e2_to_e1, calc_B, 'r:', 'LineWidth', 3) % prin no eff'
+plot(e2_to_e1, calc_C, 'g--', 'LineWidth', 3) % prin planar eff'
+plot(e2_to_e1, calc_D, 'm--', 'LineWidth', 3) % prin full eff'
+plot(e2_to_e1, calc_E, 'b-.', 'LineWidth', 3) % prin planar eff 3D'
+plot(e2_to_e1, calc_F, 'k', 'LineWidth', 3)
+grid on
+xlabel('$\dot{\epsilon}_2 / \dot{\epsilon}_1$', 'Interpreter', 'latex')
+ylabel('Basal crevasse height, d_b (m)')
+calc_legend = {'Calc. B_E0-SM-0',...
+            'Calc. C_EP-SM-0', 'Calc. D_EF-SM-0', 'Calc. E_EP-SM-1', 'Calc. F_EF-SM-1'};
+legend(calc_legend, 'Location', 'southeast', 'Interpreter', 'none')
+xticks([-2,-1,0,1])
+fontname('Arial')
+fontsize(14, 'points')
+
+exportgraphics(gcf,'crev_of_prin.png', 'Resolution', 300)
+

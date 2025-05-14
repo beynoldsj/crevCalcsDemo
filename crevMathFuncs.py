@@ -29,6 +29,32 @@ def AofT(T):
     
     return A
 
+
+def eig_2D_sym(a_xx, a_yy, a_xy):
+    # calculates eigen values for a 2d symmetric matrix
+    
+    a_1 = (a_xx + a_yy)/2 + np.sqrt(((a_xx-a_yy)/2)**2 + a_xy**2)
+    a_2 = (a_xx + a_yy)/2 - np.sqrt(((a_xx-a_yy)/2)**2 + a_xy**2)
+    
+    return a_1, a_2
+
+
+def eff_strain_rate(e_xx, e_yy, e_zz, e_xy, e_xz, e_yz):
+    # calculaes effective strain rate from the six unique components 
+
+    e_eff = (0.5*(e_yy**2 + e_xx**2 + e_zz**2) + e_xy**2 + e_xz**2 + e_yz**2)**0.5
+
+    return e_eff
+
+
+def zero_stress_basal(rho_i, rho_pw, g, Rxx_b, H_ab):
+    # calculate a basal crevasse height assuming a constant resistive stress
+    
+    db = rho_i/(rho_pw-rho_i) * (Rxx_b/(rho_i*g)-H_ab)
+
+    return db
+
+
 def nyeCrevassesAF(X, Y, VX, VY, surf, thk, Tsurf, Tbase, rho_i, rho_pw, g, RxxCalc):    
     """
     Description:
